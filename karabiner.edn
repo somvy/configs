@@ -1,0 +1,214 @@
+{:simlayers {
+        :caps_lock-mode {:key :a}
+        :music-mode {:key :p}
+        :safari-mode {:key :v}
+        :e-mode {:key :e}
+        :shift-mode {:key :s}
+        :apps-mode {:key :grave_accent_and_tilde}
+        ;; :shift-arrows-mode {:key }
+        }
+:input-sources {;; define input-source, these data can be founhd in Karabiner EventViewer gui
+                 :us {
+                      :input_source_id "com.apple.keylayout.ABC"
+                      :language        "en"}
+                :ru {
+                      :input_source_id "com.apple.keylayout.RussianWin"
+                      :language "ru"}
+        }
+ :templates {
+             :open "open \"%s\""
+                     :open-safari "osascript -e 'tell application \"Safari\" 
+                tell window 1 
+                        set current tab to (make new tab with properties {URL:\"%s\"}) 
+                end tell 
+                end tell'"
+            :layout "/bin/bash \"issw %s\""
+             }
+ :main [{:des "text manipulations (a key)",
+         :rules [:caps_lock-mode
+                 [:close_bracket :!TOclose_bracket]
+                 [:semicolon :!TOsemicolon]
+                 [:quote :return_or_enter]
+                ;;  [:comma  :us]
+                ;;  [:period :ru]
+                ;;  [:comma [:layout "com.apple.keylayout.ABC"]]
+                ;;  [:period [:layout "com.apple.keylayout.ABC"]]
+                 [:slash :!TOslash]
+                 [:b :!TOb]
+                 [:c :!TOc]
+                 [:d :!TOd]
+                 [:e :!TOe]
+                 [:f :!TOf]
+                 [:g :!TOg]
+                 [:h :!Odelete_or_backspace]
+                 [:i :up_arrow]
+                 [:j :left_arrow]
+                 [:k :down_arrow]
+                 [:l :right_arrow]
+                 [:!Si :!Sup_arrow]
+                 [:!Sj :!Sleft_arrow]
+                 [:!Sk :!Sdown_arrow]
+                 [:!Sl :!Sright_arrow]
+                 [:!Oi :!Oup_arrow]
+                 [:!Oj :!Oleft_arrow]
+                 [:!Ok :!Odown_arrow]
+                 [:!Ol :!Oright_arrow]
+                 [:m :!TOm]
+                 [:n :!TOn]
+                 [:o :!Oright_arrow]
+                 [:p :delete_or_backspace]
+                 [:!Op :!Odelete_or_backspace]
+                 [:!Cp :!Cdelete_or_backspace]
+                 [:open_bracket :delete_forward]
+                 [:!Oopen_bracket :!Odelete_forward]
+                 [:q :!TOq]
+                 [:r :!TOr]
+                 [:s :!TOs]
+                 [:t :!TOt]
+                 [:u :!Oleft_arrow]
+                 [:v :!TOv]
+                 [:w :!TOw]
+                 [:x :!TOx]
+                 [:y :!TOy]
+                 [:z :!TOz]
+                 [:1 :!TO1]
+                 [:2 :!TO2]
+                 [:3 :!TO3]
+                 [:4 :!TO4]
+                 [:5 :!TO5]
+                 [:6 :!TO6]
+                 [:7 :!TO7]
+                 [:8 :!TO8]
+                 [:9 :!TO9]
+                 [:0 :!TO0]]}
+        {:des "multimedia keys"
+         :rules [:music-mode
+                [:j :volume_decrement]
+                [:k :volume_increment]
+                [:a :rewind]
+                [:s :play_or_pause]
+                [:d :fastforward]
+                [:f [:open "/Applications/Yandex Music Unofficial.app"]]
+         ]} 
+         {:des "open sites in safari"
+          :rules [:safari-mode
+                 [:k [:open-safari "https://vk.com/im"]]   
+                 [:y [:open-safari "https://www.youtube.com"]]
+                 [:n [:open-safari "https://digital-hr.tochka.com"]] 
+                 [:i [:open-safari "https://www.instagram.com"]] 
+                 [:r [:open-safari "https://e.mospolytech.ru/?p=rasp#/schedule"]]
+                 [:l [:open-safari "https://gitlab.tochka-tech.com/data-dev/market-parser/-/tree/master"]]
+                 [:g [:open-safari "https://github.com"]]
+                        ]}
+        {:des "swap : and ;"
+         :rules [[:semicolon  :!Ssemicolon :us]
+                 [:!Ssemicolon :semicolon :us]]}
+
+         {:des "ekey (cmd)"
+         :rules [:e-mode
+                 [:q :!Cq]
+                 [:w :!Cw]
+                 [:r :!Cr]
+                 [:t :!Ct]
+                 [:u :!Cu]
+                 [:i :!Ci]
+                 [:p :!Cp]
+                 [:open_bracket :!Copen_bracket]
+                 [:close_bracket :!Cclose_bracket]
+                 [:semicolon :!Csemicolon]
+                 [:quote :!Cquote]
+                 [:comma :!Ccomma]
+                 [:period :!Cperiod]
+                 [:slash :!Cslash]
+                 [:a :!Ca]
+                 [:b :!Cb]
+                 [:c :!Cc]
+                 [:d :!Cd]
+                 [:f :!Cf]
+                 [:g :!Cg]
+                 [:h :!Ch]
+                 [:j :!Cj]
+                 [:k :!Ck]
+                 [:l :!Cl]
+                 [:m :!Cm]
+                 [:n :!Cn]
+                 [:o :!Co]
+                 [:s :!Cs]
+                 [:v :!Cv]
+                 [:x :!Cx]
+                 [:y :!Cy]
+                 [:z :!Cz]
+                 [:1 :!C1]
+                 [:2 :!C2]
+                 [:3 :!C3]
+                 [:4 :!C4]
+                 [:5 :!C5]
+                 [:6 :!C6]
+                 [:7 :!C7]
+                 [:8 :!C8]
+                 [:9 :!C9]
+                 [:0 :!C0]
+                 ]}
+        {:des "open apps with tilda"
+         :rules [:apps-mode
+                ;; [:grave_accent_and_tilde :escape ]
+                [:s [:open "/Applications/Safari.app"]]
+                [:y [:open "/Applications/PyCharm.app"]]
+                [:l [:open "/Applications/Slack.app"]]
+                [:t [:open "/Applications/iTerm.app"]]
+                [:r [:open "/Applications/Telegram.app"]]
+                [:b [:open "/Applications/DataSpell.app"]]
+                [:k [:open "/Users/doncov/.config/karabiner.edn"]]
+                [:comma [:open "/Applications/BetterTouchTool.app"]]
+                [:period "goku"]
+                ]}        
+      {:des "shift-mode (S key)"
+         :rules [:shift-mode
+                 [:1 :!S1]
+                 [:2 :!S2]
+                 [:3 :!S3]
+                 [:4 :!S4]
+                 [:5 :!S5]
+                 [:6 :!S6]
+                 [:7 :!S7]
+                 [:8 :!S8]
+                 [:9 :!S9]
+                 [:0 :!S0]
+                 [:q :!Sq]
+                 [:w :!Sw]
+                 [:e :!Se]
+                 [:r :!Sr]
+                 [:t :!St]
+                 [:y :!Sy]
+                 [:u :!Su]
+                 [:i :!Si]
+                 [:o :!So]
+                 [:p :!Sp]
+                 [:open_bracket :!Sopen_bracket]
+                 [:close_bracket :!Sclose_bracket]
+                 [:semicolon :semicolon]
+                 [:comma :!Scomma]
+                 [:period :!Speriod]
+                 [:slash :!Sslash]
+                 [:quote :!Squote]
+                 [:hyphen :!Shyphen]
+                 [:equal_sign :!Sequal_sign]
+                 [:backslash :!Sbackslash]
+                 [:a :!Sa]
+                ;;  [:s :!Ss]
+                 [:d :!Sd]
+                 [:f :!Sf]
+                 [:g :!Sg]
+                 [:h :!Sh]
+                 [:j :!Sj]
+                 [:k :!Sk]
+                 [:l :!Sl]
+                 [:z :!Sz]
+                 [:x :!Sx]
+                 [:c :!Sc]
+                 [:v :!Sv]
+                 [:b :!Sb]
+                 [:n :!Sn]
+                 [:m :!Sm]]}
+
+        ]}
