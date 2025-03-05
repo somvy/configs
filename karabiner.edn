@@ -1,60 +1,99 @@
-{:simlayers {
-        :caps_lock-mode {:key :a}
+{:profiles
+ {:Default {:default true
+         :alone   3000 ; to if alone timeout ms
+         :held    500 ; to if held down threshold
+         :delay   500 ; to delayed action delay
+         :sim     50 ; sim threshold
+         }}
+ :simlayers {
+        :caps-mode {:key :caps_lock}
+
+        :shift-arrows-mode {:key :q }
+        :window-mode {:key :w}     
+        :e-mode {:key :e}
+        :keys-nav-mode {:key :a}
+        :shift-mode {:key :s}
+        :control-mode {:key :d}
+        :mouse-mode {:key :f}
+        :config-mode {:key :c}
         :music-mode {:key :p}
         :safari-mode {:key :v}
-        :e-mode {:key :e}
-        :shift-mode {:key :s}
+        
         :apps-mode {:key :grave_accent_and_tilde}
-        ;; :shift-arrows-mode {:key }
+        :option-mode {:key :r}
         }
-:input-sources {;; define input-source, these data can be founhd in Karabiner EventViewer gui
-                 :us {
+	:applications {
+		; https://github.com/yqrashawn/GokuRakuJoudo/blob/master/tutorial.md
+																:jetbrains ["^com\\.jetbrains.*$"]
+																:pycharm ["^com\\.jetbrains\\.pycharm$"]
+																:clion ["^com\\.jetbrains\\.CLion.*$"]
+																:dataspell ["^com\\.jetbrains\\.dataspell$"]
+																:arc ["^company\\.thebrowser\\.Browser$"]
+																:vscode ["^com\\.microsoft\\.VSCode$"]
+																:iterm2 ["^com\\.googlecode\\.iterm2$"]
+                                                                                                                :cursor ["^com\\.todesktop\\.230313mzl4w4u92$"]
+																; app names: lsappinfo 
+															}
+
+ :input-sources {
+        ;; define input-source, these data can be founhd in Karabiner EventViewer gui
+                :us {
                       :input_source_id "com.apple.keylayout.ABC"
-                      :language        "en"}
+                      :language        "en"
+                      }
                 :ru {
                       :input_source_id "com.apple.keylayout.RussianWin"
-                      :language "ru"}
+                      :language "ru"
+                      }
         }
  :templates {
-             :open "open \"%s\""
-                     :open-safari "osascript -e 'tell application \"Safari\" 
+                :open "open \"%s\""
+                :open-safari "osascript -e 'tell application \"Safari\" 
                 tell window 1 
                         set current tab to (make new tab with properties {URL:\"%s\"}) 
                 end tell 
                 end tell'"
-            :layout "/bin/bash \"issw %s\""
+                :layout "/bin/bash \"issw %ess\""
+                :edit "/Applications/Sublime\\ Text.app/Contents/SharedSupport/bin/subl \"%s\""
              }
- :main [{:des "text manipulations (a key)",
-         :rules [:caps_lock-mode
+ :main [
+
+
+ 							{:des "text manipulations (a key)",
+         :rules  [:keys-nav-mode
                  [:close_bracket :!TOclose_bracket]
                  [:semicolon :!TOsemicolon]
                  [:quote :return_or_enter]
-                ;;  [:comma  :us]
-                ;;  [:period :ru]
-                ;;  [:comma [:layout "com.apple.keylayout.ABC"]]
-                ;;  [:period [:layout "com.apple.keylayout.ABC"]]
-                 [:slash :!TOslash]
-                 [:b :!TOb]
+                 ;;  [:comma  :us]
+                 ;;  [:period :ru]
+                 [:period :!Cright_arrow]
+                 [:comma :!Cleft_arrow]
+                 [:slash :!Tspacebar]
+                 ;; [:b :!TOb]
                  [:c :!TOc]
                  [:d :!TOd]
                  [:e :!TOe]
                  [:f :!TOf]
                  [:g :!TOg]
-                 [:h :!Odelete_or_backspace]
-                 [:i :up_arrow]
-                 [:j :left_arrow]
-                 [:k :down_arrow]
+                 [:b :!Odelete_or_backspace]
+                 [:k :up_arrow]
+                 [:h :left_arrow]
+                 [:j :down_arrow]
                  [:l :right_arrow]
-                 [:!Si :!Sup_arrow]
-                 [:!Sj :!Sleft_arrow]
-                 [:!Sk :!Sdown_arrow]
+                 [:!Sk :!Sup_arrow]
+                 [:!Sh :!Sleft_arrow]
+                 [:!Sj :!Sdown_arrow]
                  [:!Sl :!Sright_arrow]
-                 [:!Oi :!Oup_arrow]
-                 [:!Oj :!Oleft_arrow]
-                 [:!Ok :!Odown_arrow]
+                 [:!Ok :!Oup_arrow]
+                 [:!Oh :!Oleft_arrow]
+                 [:!Oj :!Odown_arrow]
                  [:!Ol :!Oright_arrow]
-                 [:m :!TOm]
-                 [:n :!TOn]
+                 [:m :!SOdown_arrow :jetbrains]
+                 [:m :!SOdown_arrow :vscode]
+                 [:m :!SOdown_arrow :cursor]
+                 [:n :!SOup_arrow :jetbrains]
+                 [:n :!SOup_arrow :vscode]
+                 [:n :!SOup_arrow :cursor]
                  [:o :!Oright_arrow]
                  [:p :delete_or_backspace]
                  [:!Op :!Odelete_or_backspace]
@@ -69,7 +108,7 @@
                  [:v :!TOv]
                  [:w :!TOw]
                  [:x :!TOx]
-                 [:y :!TOy]
+                 [:y :!Cdelete_or_backspace]
                  [:z :!TOz]
                  [:1 :!TO1]
                  [:2 :!TO2]
@@ -81,134 +120,310 @@
                  [:8 :!TO8]
                  [:9 :!TO9]
                  [:0 :!TO0]]}
-        {:des "multimedia keys"
+
+       {:des "complex scenarios (caps key)", ;; see settings in better touch tool 
+        :rules [:caps-mode
+               [:s :!CTOg] ;; search with google
+               [:o :!CTOo] ;; open selected link
+               [:d :!CTOu] ;; paste selected text
+               ; [:i :!CTOi] ;; focus dock
+               ]}
+        {:des "multimedia/music keys (p key)"
          :rules [:music-mode
                 [:j :volume_decrement]
                 [:k :volume_increment]
                 [:a :rewind]
                 [:s :play_or_pause]
                 [:d :fastforward]
-                [:f [:open "/Applications/Yandex Music Unofficial.app"]]
-         ]} 
-         {:des "open sites in safari"
-          :rules [:safari-mode
-                 [:k [:open-safari "https://vk.com/im"]]   
-                 [:y [:open-safari "https://www.youtube.com"]]
-                 [:n [:open-safari "https://digital-hr.tochka.com"]] 
-                 [:i [:open-safari "https://www.instagram.com"]] 
-                 [:r [:open-safari "https://e.mospolytech.ru/?p=rasp#/schedule"]]
-                 [:l [:open-safari "https://gitlab.tochka-tech.com/data-dev/market-parser/-/tree/master"]]
-                 [:g [:open-safari "https://github.com"]]
-                        ]}
-        {:des "swap : and ;"
-         :rules [[:semicolon  :!Ssemicolon :us]
-                 [:!Ssemicolon :semicolon :us]]}
+                ; [:f [:open "/Applications/Yandex Music Unofficial.app"]]
+                [:f [:open "/Applications/Spotify.app"]]
+        ]} 
 
-         {:des "ekey (cmd)"
+
+        {:des "window manipulations (w key)"
+         :rules [:window-mode
+                [:y :!CTO5] ;move to next monitor
+
+                [:u :!CTO1] ;maximize left
+                [:o :!CTO2] ;maximize right
+                [:i :!CTO6] ;maximize
+                [:p :!CTO7] ;restore old window size
+                
+                ; [:h :!CTO3] ;window moving
+                ; [:n :!CTO4] ;window resizing
+                [:j :!Tleft_arrow] ;go to left space
+                [:l :!Tright_arrow] ;go to right space
+                [:k :!Tup_arrow] ;mission control
+                [:f :!Ctab] ;next app
+                [:d :!CStab] ;prev app
+
+                ; [:7 :!Tf2] ; menu bar (left)
+                ; [:8 :!Tf8] ; menu bar (righ)
+                ; [:9 :!Tf3] ; dock bar
+                [:7 [:open "/Applications/Visual Studio Code.app"]]
+                [:8 [:open "/Applications/Arc.app"]]
+                [:9 [:open "/Users/admin/Applications/iTerm.app"]]
+                [:g :!Cgrave_accent_and_tilde]
+
+
+         ]}
+
+        {:des "option (r key)",
+         :rules [:option-mode
+                [:v :!CS6 ]
+                [:u :!Oup_arrow :jetbrains]
+                [:j :!Odown_arrow :jetbrains]
+                [:i :!TSup_arrow :jetbrains]
+                [:k :!TSdown_arrow :jetbrains]
+                [:o :!CTcomma :jetbrains]
+                [:l :!CTperiod :jetbrains]
+                ; [:i :!O ]
+        ]}
+
+         
+        {:des "open sites in browser (v key)"
+         :rules [:safari-mode
+                ; [:d [:open "https://docs.tochka-tech.com"]]
+                [:g [:open "https://github.com"]]
+                ; [:i [:open "https://logs-kibana.query.consul-test/app/discover#/"]] 
+                ; [:k [:open "https://vk.com/im"]]   
+                ; [:l [:open "https://gitlab.tochka-tech.com"]]
+                [:m [:open "https://mail.yandex.ru/"]]
+                ; [:n [:open "https://digital-hr.tochka.com"]] 
+                [:p [:open "https://google.com/?q=`pbpaste`"]]    
+                ; [:o [:open "https://logs-kibana.query.consul-test/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-1d,to:now))&_a=(columns:!(params.customer_code,params.search_text),filters:!(),index:caabb420-ed5b-11ec-acb3-93ec88387a5d,interval:auto,query:(language:kuery,query:'params.search_text:%20*'),sort:!(!('@timestamp',desc)))"]]
+                ; [:r [:open "https://jupyterhub-jph.query.consul-test/"]]
+                ; [:x [:open "https://ex13.tochka.com/owa/#path=/mail"]]
+                ; [:y [:open "https://www.youtube.com"]]
+                
+        ]}
+
+        {:des "swap : and ;"
+         :rules [
+                [:semicolon  :!Ssemicolon [:us :!clion]]
+                [:!Ssemicolon :semicolon  [:us :!clion]]
+        ]}
+        {:des "swap quote and double quote"
+       		:rules [
+       									[:quote :!Squote [:us :!clion]]
+       									[:!Squote :quote [:us :!clion]]
+       	]}
+
+
+        {:des "mouse manipulations (f key)"
+         :rules [:mouse-mode
+                [:i {:mkey {:y -1500}}] ; move up
+                [:k {:mkey {:y 1500}}] ; down
+                [:j {:mkey {:x -1000}}] ; left
+                [:l {:mkey {:x 1000}}] ; right
+                [:u {:mkey {:x -5000 :speed 1.0}}]
+                [:o {:mkey {:x 5000 :speed 1.0}}]
+                [:a {:pkey :button1}] ; Left click
+                [:d {:pkey :button2}] ; Right click
+                [:comma {:mkey {:vwheel 60 :speed 1.0}}]
+                [:period {:mkey {:vwheel -60 :speed 1.0}}]
+                ;;  [:b {:pkey :button3}] ; Middle click      
+                [:f6 [:open "/Applications/Arc.app"]]     
+        ]}
+         
+        {:des "e key (cmd)"
          :rules [:e-mode
-                 [:q :!Cq]
-                 [:w :!Cw]
-                 [:r :!Cr]
-                 [:t :!Ct]
-                 [:u :!Cu]
-                 [:i :!Ci]
-                 [:p :!Cp]
-                 [:open_bracket :!Copen_bracket]
-                 [:close_bracket :!Cclose_bracket]
-                 [:semicolon :!Csemicolon]
-                 [:quote :!Cquote]
-                 [:comma :!Ccomma]
-                 [:period :!Cperiod]
-                 [:slash :!Cslash]
-                 [:a :!Ca]
-                 [:b :!Cb]
-                 [:c :!Cc]
-                 [:d :!Cd]
-                 [:f :!Cf]
-                 [:g :!Cg]
-                 [:h :!Ch]
-                 [:j :!Cj]
-                 [:k :!Ck]
-                 [:l :!Cl]
-                 [:m :!Cm]
-                 [:n :!Cn]
-                 [:o :!Co]
-                 [:s :!Cs]
-                 [:v :!Cv]
-                 [:x :!Cx]
-                 [:y :!Cy]
-                 [:z :!Cz]
-                 [:1 :!C1]
-                 [:2 :!C2]
-                 [:3 :!C3]
-                 [:4 :!C4]
-                 [:5 :!C5]
-                 [:6 :!C6]
-                 [:7 :!C7]
-                 [:8 :!C8]
-                 [:9 :!C9]
-                 [:0 :!C0]
-                 ]}
-        {:des "open apps with tilda"
+                ;[:e :!Cq] 
+                [:w :!Cw]
+                [:r :!Cr]
+                [:t :!Ct]
+                [:u :!Cu]
+                [:i :!Ci]
+                [:p :!Cp]
+                [:open_bracket :!Copen_bracket]
+                [:close_bracket :!Cclose_bracket]
+                [:semicolon :!Csemicolon]
+                [:quote :!Cquote]
+                [:comma :!Ccomma]
+                [:period :!Cperiod]
+                [:slash :!Cslash]
+                ; [:a :!Ca]
+                [:b :!Cb]
+                [:c :!Cc]
+                [:d :!Cd]
+                [:f :!Cf]
+                [:g :!Cg]
+                [:h :!Ch]
+                [:j :!Cj]
+                [:k :!Ck]
+                [:l :!Cl]
+                [:m :!Cm]
+                [:n :!Cn]
+                [:o :!Co]
+                [:s :!Cs]
+                [:v :!Cv]
+                [:x :!Cx]
+                [:y :!Cy]
+                [:z :!Cz]
+                [:1 :!C1]
+                [:2 :!C2]
+                [:3 :!C3]
+                [:4 :!C4]
+                [:5 :!C5]
+                [:6 :!C6]
+                [:7 :!C7]
+                [:8 :!C8]
+                [:9 :!C9]
+                [:0 :!C0]
+        ]}
+
+
+        {:des "open apps with tilda" ;openapps
          :rules [:apps-mode
-                ;; [:grave_accent_and_tilde :escape ]
-                [:s [:open "/Applications/Safari.app"]]
-                [:y [:open "/Applications/PyCharm.app"]]
-                [:l [:open "/Applications/Slack.app"]]
-                [:t [:open "/Applications/iTerm.app"]]
-                [:r [:open "/Applications/Telegram.app"]]
+                [:grave_accent_and_tilde :escape ]
+                [:a [:open "/System/Applications/Reminders.app"]]
                 [:b [:open "/Applications/DataSpell.app"]]
-                [:k [:open "/Users/doncov/.config/karabiner.edn"]]
+                [:c [:open "/System/Applications/Calendar.app"]]
+              ;;   [:d [:open "/Applications/Docker.app"]]
+                ; [:e [:open "/Applications/Endel.app"]]
+                [:f [:open "/Users/doncov/Downloads"]] ;; finder
+                [:g [:open "/Users/doncov/Library/Application Support/JetBrains/Toolbox/apps/DataSpell/ch-0/222.4345.24/DataSpell.app"]] ;; finder
+
+                ; [:h [:open "/Applications/Google Chrome.app"]]
+                [:h [:open "/Applications/Arc.app"]]
+                [:s [:open "/System/Applications/System Preferences.app"]]
+                [:k [:open "/Applications/Notion.app"]]
+                [:l [:open "/Applications/Mattermost.app"]]
+                [:m [:open "/System/Applications/Mail.app"]]
+                ; [:n [:open "/Applications/Notion.app"]]
+                [:n [:open "/System/Applications/Notes.app"]]
+                [:o [:open "/Applications/Obsidian.app"]]
+                ; [:p [:open "/System/Applications/Preview.app"]]
+                [:r [:open "/Applications/Telegram.app"]]
+                [:s [:open "/Applications/Sublime Text.app"]]
+                [:t [:open "/Applications/iTerm.app"]]
+                ; [:t [:open "/Applications/Warp.app"]]
+                [:u [:open "/Applications/Visual Studio Code.app"]]
+              
+                [:x [:open "/Applications/Discord.app"]]
+                ; [:y [:open "/Applications/PyCharm.app"]]
+                [:y [:open "/Users/doncov/Library/Application Support/JetBrains/Toolbox/apps/PyCharm-P/ch-0/223.8214.51/PyCharm.app"]]
+                [:z [:open "/Applications/zoom.us.app"]]
                 [:comma [:open "/Applications/BetterTouchTool.app"]]
-                [:period "goku"]
-                ]}        
-      {:des "shift-mode (S key)"
+              ;;   [:semicolon [:]]
+              ;;   [:period "goku"]
+        ]}
+
+        {:des "edit config files"
+         :rules [:config-mode
+                [:k [:edit "/Users/doncov/.config/karabiner.edn"]]
+                [:a [:edit "~/.zsh_aliases"]]
+                [:r [:edit "~/.zshrc"]]
+
+]}
+
+        {:des "control mode (d key)"
+         :rules [:control-mode
+                [:comma :!TStab]
+                [:period :!Ttab]
+                [:c :!Tc]
+                [:m :!Tm]
+              ;;   [:d :!Td]
+              		; [:open_bracket :!SOup_arrow :jetbrains]
+                [:f :!Tf]
+                [:j :!Tj]
+                [:t :!Tt]
+                ;; open code apps
+                ; [:f6 [:open "/Applications/Visual Studio Code.app"]]
+                ; ; [:f7 [:open "/Users/admin/Applications/PyCharm Professional Edition.app"]]
+                ; [:f7 [:open "/Applications/Arc.app"]]
+                ; [:f8 [:open "/Users/admin/Applications/iTerm.app"]]
+                ; ; [:f9 [:open "/Users/admin/Applications/DataGrip.app"]]
+                ; [:f10 [:open "/Users/admin/Applications/CLion.app"]]
+         ]}
+
+        {:des "shift arrows mode (q key)"
+         :rules [:shift-arrows-mode
+                [ :k :!Sup_arrow]
+                [ :l :!Sleft_arrow]
+                [ :j :!Sdown_arrow]
+                [ :h :!Sright_arrow]
+                [ :o :!SOright_arrow]
+                [ :u :!SOleft_arrow]
+                [ :comma :!SCleft_arrow]
+                [ :period :!SCright_arrow]
+                [ :quote :!Sreturn_or_enter]
+         ]    
+              
+        }
+
+        {:des "shift-mode (s key)"
          :rules [:shift-mode
-                 [:1 :!S1]
-                 [:2 :!S2]
-                 [:3 :!S3]
-                 [:4 :!S4]
-                 [:5 :!S5]
-                 [:6 :!S6]
-                 [:7 :!S7]
-                 [:8 :!S8]
-                 [:9 :!S9]
-                 [:0 :!S0]
-                 [:q :!Sq]
-                 [:w :!Sw]
-                 [:e :!Se]
-                 [:r :!Sr]
-                 [:t :!St]
-                 [:y :!Sy]
-                 [:u :!Su]
-                 [:i :!Si]
-                 [:o :!So]
-                 [:p :!Sp]
-                 [:open_bracket :!Sopen_bracket]
-                 [:close_bracket :!Sclose_bracket]
-                 [:semicolon :semicolon]
-                 [:comma :!Scomma]
-                 [:period :!Speriod]
-                 [:slash :!Sslash]
-                 [:quote :!Squote]
-                 [:hyphen :!Shyphen]
-                 [:equal_sign :!Sequal_sign]
-                 [:backslash :!Sbackslash]
-                 [:a :!Sa]
-                ;;  [:s :!Ss]
-                 [:d :!Sd]
-                 [:f :!Sf]
-                 [:g :!Sg]
-                 [:h :!Sh]
-                 [:j :!Sj]
-                 [:k :!Sk]
-                 [:l :!Sl]
-                 [:z :!Sz]
-                 [:x :!Sx]
-                 [:c :!Sc]
-                 [:v :!Sv]
-                 [:b :!Sb]
-                 [:n :!Sn]
-                 [:m :!Sm]]}
+                [:1 :1]
+                [:2 :2]
+                [:3 :3]
+                [:4 :4]
+                [:5 :5]
+                [:6 :6]
+                [:7 :7]
+                [:8 :8]
+                [:9 :9]
+                [:0 :0]
+                [:q :!Sq]
+                [:w :!Sw]
+                [:e :!Se]
+                [:r :!Sr]
+                [:t :!St]
+                [:y :!Sy]
+                [:u :!Su]
+                [:i :!Si]
+                [:o :!So]
+                [:p :!Sp]
+                [:open_bracket :!Sopen_bracket]
+                [:close_bracket :!Sclose_bracket]
+                [:semicolon :semicolon]
+
+                [:comma :!Scomma]
+                [:period :!Speriod]
+                [:slash :!Sslash]
+              ;;   [:quote :!Sreturn_or_enter]
+                [:quote :quote]
+                ; [:hyphen :hyphen :us :pycharm :dataspell :vscode]
+                [:equal_sign :!Sequal_sign]
+                [:backslash :!Sbackslash]
+                [:a :!Sa]
+                [:right_shift :!Ss] 
+                [:d :!Sd]
+                [:f :!Sf]
+	               [:g :!Sg]
+                [:h :!Sh]
+                [:j :!Sj]
+                [:k :!Sk]
+                [:l :!Sl]
+                [:z :!Sz]
+                [:x :!Sx]
+                [:c :!Sc]
+                [:v :!Sv]
+                [:b :!Sb]
+                [:n :!Sn]
+                [:m :!Sm]
+                ]}
+
+ 							{:des "simple rules",
+ 								:rules [
+ 															; [:grave_accent_and_tilde :escape]
+ 															[:!Oquote :grave_accent_and_tilde]
+ 															; [:1 :!S1] [:!S1 :1]
+ 															; [:2 :!S2] [:!S2 :2]
+ 															; [:3 :!S3] [:!S3 :3]
+ 															; [:4 :!S4] [:!S4 :4]
+ 															; [:5 :!S5] [:!S5 :5]
+ 															; [:6 :!S6] [:!S6 :6]
+ 															; [:7 :!S7] [:!S7 :7]
+ 															; [:8 :!S8] [:!S8 :8]
+ 															; [:9 :!S9] [:!S9 :9]
+ 															; [:0 :!S0] [:!S0 :0]
+ 															; [:hyphen :!Shyphen :us] [:!Shyphen :hyphen :us]
+                ; [:period {:mkey {:vwheel -60 :speed 1.0}}]
+ 															[:right_command :right_command nil {:alone {:input :ru}} ]
+ 															[:left_command	 :left_command nil {:alone {:input :us}}]
+
+
+ 								]}
 
         ]}
