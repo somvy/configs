@@ -24,16 +24,16 @@
         }
 	:applications {
 		; https://github.com/yqrashawn/GokuRakuJoudo/blob/master/tutorial.md
-																:jetbrains ["^com\\.jetbrains.*$"]
-																:pycharm ["^com\\.jetbrains\\.pycharm$"]
-																:clion ["^com\\.jetbrains\\.CLion.*$"]
-																:dataspell ["^com\\.jetbrains\\.dataspell$"]
-																:arc ["^company\\.thebrowser\\.Browser$"]
-																:vscode ["^com\\.microsoft\\.VSCode$"]
-																:iterm2 ["^com\\.googlecode\\.iterm2$"]
-                                                                                                                :cursor ["^com\\.todesktop\\.230313mzl4w4u92$"]
-																; app names: lsappinfo 
-															}
+        :jetbrains ["^com\\.jetbrains.*$"]
+        :pycharm ["^com\\.jetbrains\\.pycharm$"]
+        :clion ["^com\\.jetbrains\\.CLion.*$"]
+        :dataspell ["^com\\.jetbrains\\.dataspell$"]
+        :arc ["^company\\.thebrowser\\.Browser$"]
+        :vscode ["^com\\.microsoft\\.VSCode$"]
+        :iterm2 ["^com\\.googlecode\\.iterm2$"]
+:cursor ["^com\\.todesktop\\.230313mzl4w4u92$"]
+        ; app names: lsappinfo 
+}
 
  :input-sources {
         ;; define input-source, these data can be founhd in Karabiner EventViewer gui
@@ -183,18 +183,10 @@
          
         {:des "open sites in browser (v key)"
          :rules [:safari-mode
-                ; [:d [:open "https://docs.tochka-tech.com"]]
-                [:g [:open "https://github.com"]]
-                ; [:i [:open "https://logs-kibana.query.consul-test/app/discover#/"]] 
+                [:g [:open "https://github.com"]] 
                 ; [:k [:open "https://vk.com/im"]]   
-                ; [:l [:open "https://gitlab.tochka-tech.com"]]
                 [:m [:open "https://mail.yandex.ru/"]]
-                ; [:n [:open "https://digital-hr.tochka.com"]] 
                 [:p [:open "https://google.com/?q=`pbpaste`"]]    
-                ; [:o [:open "https://logs-kibana.query.consul-test/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-1d,to:now))&_a=(columns:!(params.customer_code,params.search_text),filters:!(),index:caabb420-ed5b-11ec-acb3-93ec88387a5d,interval:auto,query:(language:kuery,query:'params.search_text:%20*'),sort:!(!('@timestamp',desc)))"]]
-                ; [:r [:open "https://jupyterhub-jph.query.consul-test/"]]
-                ; [:x [:open "https://ex13.tochka.com/owa/#path=/mail"]]
-                ; [:y [:open "https://www.youtube.com"]]
                 
         ]}
 
@@ -282,7 +274,6 @@
               ;;   [:d [:open "/Applications/Docker.app"]]
                 ; [:e [:open "/Applications/Endel.app"]]
                 [:f [:open "/Users/doncov/Downloads"]] ;; finder
-                [:g [:open "/Users/doncov/Library/Application Support/JetBrains/Toolbox/apps/DataSpell/ch-0/222.4345.24/DataSpell.app"]] ;; finder
 
                 ; [:h [:open "/Applications/Google Chrome.app"]]
                 [:h [:open "/Applications/Arc.app"]]
@@ -404,26 +395,26 @@
                 [:m :!Sm]
                 ]}
 
- 							{:des "simple rules",
- 								:rules [
- 															; [:grave_accent_and_tilde :escape]
- 															[:!Oquote :grave_accent_and_tilde]
- 															; [:1 :!S1] [:!S1 :1]
- 															; [:2 :!S2] [:!S2 :2]
- 															; [:3 :!S3] [:!S3 :3]
- 															; [:4 :!S4] [:!S4 :4]
- 															; [:5 :!S5] [:!S5 :5]
- 															; [:6 :!S6] [:!S6 :6]
- 															; [:7 :!S7] [:!S7 :7]
- 															; [:8 :!S8] [:!S8 :8]
- 															; [:9 :!S9] [:!S9 :9]
- 															; [:0 :!S0] [:!S0 :0]
- 															; [:hyphen :!Shyphen :us] [:!Shyphen :hyphen :us]
-                ; [:period {:mkey {:vwheel -60 :speed 1.0}}]
- 															[:right_command :right_command nil {:alone {:input :ru}} ]
- 															[:left_command	 :left_command nil {:alone {:input :us}}]
+                                {:des "simple rules",
+                                        :rules [
+                ; [:grave_accent_and_tilde :escape]
+                [:!Oquote :grave_accent_and_tilde]
+                ; [:1 :!S1] [:!S1 :1]
+                ; [:2 :!S2] [:!S2 :2]
+                ; [:3 :!S3] [:!S3 :3]
+                ; [:4 :!S4] [:!S4 :4]
+                ; [:5 :!S5] [:!S5 :5]
+                ; [:6 :!S6] [:!S6 :6]
+                ; [:7 :!S7] [:!S7 :7]
+                ; [:8 :!S8] [:!S8 :8]
+                ; [:9 :!S9] [:!S9 :9]
+                ; [:0 :!S0] [:!S0 :0]
+                ; [:hyphen :!Shyphen :us] [:!Shyphen :hyphen :us]
+; [:period {:mkey {:vwheel -60 :speed 1.0}}]
+                [:right_command :right_command nil {:alone {:input :ru}} ]
+                [:left_command	 :left_command nil {:alone {:input :us}}]
 
 
- 								]}
+                                        ]}
 
         ]}
