@@ -21,7 +21,7 @@ alias lsg='ls -alhFtr | grep'
 
 #  system
 alias pg='ping 8.8.8.8'
-alias sven='source venv/bin/activate'
+alias sven='source .venv/bin/activate'
 
 # git
 alias g='git'
