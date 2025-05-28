@@ -88,7 +88,7 @@ alias kubeprod="kubectl config use-context prod-dcdp"
 
 # python
 alias py='python3'
-alias ipy='ipython'
+alias ipy='ipython -i --no-confirm-exit --quick --no-banner --pprint'
 
 # runs 
 alias accel0="accelerate launch --gpu-id 0 "
