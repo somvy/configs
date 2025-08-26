@@ -10,3 +10,11 @@ The rest is just aliases and tools
 ```
 curl https://raw.githubusercontent.com/somvy/configs/refs/heads/main/setup.sh | bash
 ```
+
+or manually: 
+
+```
+cd && git clone git@github.com:somvy/configs.git
+ln -s configs/.bash_aliases .bash_aliases 
+
+```
