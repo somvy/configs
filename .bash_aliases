@@ -11,6 +11,8 @@ alias p='pwd'
 alias x='exit'
 alias dfh='df -h'
 alias duh='du -h -d 1'
+alias cb='cd ../'
+
 
 # greps
 alias topg='top | grep'
@@ -18,6 +20,9 @@ alias envg='env | grep'
 alias hg='history | grep'
 alias lsg='ls -alhFtr | grep'
 
+#tmux 
+alias tmuls='tmux ls' 
+alias tmucc='tmux -CC a -t'
 
 #  system
 alias pg='ping 8.8.8.8'
@@ -46,8 +51,8 @@ alias gl='git log'
 alias glg='git log --oneline --graph --all'
 alias gld='git log --decorate --oneline'
 alias gd='git diff'
+alias ga='git add' 
 alias gad='git add .'
-alias ga='git add'
 alias gst='git stash'
 alias gstu='git stash push'
 alias gstl='git stash list'
@@ -69,21 +74,10 @@ alias ksevents="kubectl -n search-2 get events --sort-by='.lastTimestamp'"
 alias po='poetry'
 alias po-cache='rm -rf ~/Library/Caches/pypoetry/cache && rm -rf ~/Library/Caches/pypoetry/artifacts'
 
-# get into pod from search-2 namespace,  container app
-alias kpsbash="fig run get-into-k8s-pod"
-
-alias kppbashapi="kubectl -n market-parser get pods | grep api |  awk '{ print $'1'  }' | xargs -o -I '{}' kubectl -n market-parser exec -it '{}' -c app --  bash"
-alias kpplogsapi="kubectl -n market-parser get pods | grep api |  awk '{ print $'1'  }' | xargs -o -I '{}' kubectl -n market-parser logs  '{}' -c app --follow --tail 10  "
-alias kppbashproxy="kubectl -n market-parser get pods | grep proxy |  awk '{ print $'1'  }' | xargs -o -I '{}' kubectl -n market-parser exec -it '{}' -c app --  bash"
-alias kpplogsproxy="kubectl -n market-parser get pods | grep proxy |  awk '{ print $'1'  }' | xargs -o -I '{}' kubectl -n market-parser logs  '{}' -c app --follow --tail 10  "
-
-alias kpdupdate="kubectl -n sellersearch get pods | grep api |  awk '{ print $'1'  }' | xargs  -I '{}' kubectl -n sellersearch exec -it '{}' -c app --  ./update_data.sh"
-alias kpdtest="kubectl -n sellersearch get pods | grep api |  awk '{ print $'1'  }' | xargs  -I '{}' kubectl -n sellersearch exec -it '{}' -c app --  pytest"
 alias kubeget="kubectl config get-contexts | grep '*' | awk '{ print $'2' }'"
 alias kubeset="kubectl config use-context"
 alias kubestage="kubectl config use-context stage-dcdp"
 alias kubeprod="kubectl config use-context prod-dcdp"
-
 
 
 # python
@@ -95,7 +89,6 @@ alias accel0="accelerate launch --gpu-id 0 "
 alias accel1="accelerate launch --gpu-id 1 "
 alias gpu0="export CUDA_VISIBLE_DEVICES=0 && "
 alias gpu1="export CUDA_VISIBLE_DEVICES=1 && "
-alias cb='cd ../'
 
 # gcc
 alias gpp='g++ -std=c++20'
