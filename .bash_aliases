@@ -87,8 +87,8 @@ alias ipy='ipython -i --no-confirm-exit --quick --no-banner --pprint'
 # runs 
 alias accel0="accelerate launch --gpu-id 0 "
 alias accel1="accelerate launch --gpu-id 1 "
-alias gpu0="export CUDA_VISIBLE_DEVICES=0 && "
-alias gpu1="export CUDA_VISIBLE_DEVICES=1 && "
+alias gpu0="CUDA_VISIBLE_DEVICES=0"
+alias gpu1="CUDA_VISIBLE_DEVICES=1"
 
 # gcc
 alias gpp='g++ -std=c++20'
