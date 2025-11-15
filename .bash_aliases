@@ -14,6 +14,8 @@ alias duh='du -h -d 1'
 alias cb='cd ../'
 
 alias clod='HTTP_PROXY=$CUSTOM_PROXY HTTPS_PROXY=$CUSTOM_PROXY claude'
+alias upd-configs='git -C ~/configs pull'
+
 # greps
 alias topg='top | grep'
 alias envg='env | grep'
